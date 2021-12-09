@@ -20,10 +20,6 @@ Set-PsReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 # docker autocompletion
 #Install-Module DockerCompletion -Scope CurrentUser
 Import-Module DockerCompletion
-# quickly cd to folder
-function dev {
-    Set-Location "~/dev"
-}
 
 # gh cli completions
 Invoke-Expression (@(gh completion --shell powershell) -replace " ''\)$"," ' ')" -join "`n")
@@ -31,6 +27,24 @@ Invoke-Expression (@(gh completion --shell powershell) -replace " ''\)$"," ' ')"
 # Git global configs
 git config --global core.excludesfile ~/.gitignore
 git config --global push.default current
+
+# Powershell functions/aliases
+# quickly cd to folder
+function dev {
+    Set-Location "~/dev"
+}
+
+# tidy LS command, without all the indentation
+function lsl($fp)
+{
+    gci $fp | foreach-object {write-output "$(if ($_.PSIsContainer) {"D"} else {"F"})|$($_.Name)"}
+}
+
+# delete all bin and obj files (for fixing broken c# projects)
+function clobj($fp)
+{
+    Get-childitem $fp -include bin,obj -recurse | foreach ($_) { remove-item $_.fullname -force -recurse }
+}
 
 Set-Location ~
 Clear-Host
