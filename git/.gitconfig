@@ -1,0 +1,21 @@
+[alias]
+    co = checkout
+    cob = checkout -b
+    st = status
+    amend = commit --amend
+    lg = log --graph --decorate --oneline
+    push-fwl = push --force-with-lease
+    commit-a = commit --amend
+    commit-an = commit --amend --no-edit
+[user]
+    email = $(GitConfigUserEmail)
+    name = $(GitConfigUserName)
+[core]
+    longpaths = true
+    excludesfile = $(GitConfigCoreExcludesFileName)
+[credential]
+	helper = C:/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
+[push]
+	default = current
+[pull]
+	default = current

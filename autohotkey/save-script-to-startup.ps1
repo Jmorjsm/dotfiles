@@ -21,4 +21,4 @@ if ($inputItem -is [System.IO.DirectoryInfo])
     }
 }
 
-Copy-Item "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Start-up"
+Copy-ItemWithBackup "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Start-up"
