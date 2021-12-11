@@ -37,6 +37,20 @@ function Copy-ItemWithBackup($fromPath, $toPath) {
     Copy-Item $fromPath $toPath
 }
 
+function Read-HostWithDefault($default, $prompt) {
+    if(-not([string]::IsNullOrEmpty($default))) {
+        $prompt = "$prompt ($default)"
+    }
+
+    $readValue = Read-Host -Prompt $prompt
+    if(-not([string]::IsNullOrEmpty($readValue))) {
+        return $readValue
+    }
+    else {
+        return $default
+    }
+}
+
 for ($scriptIndex = 0; $scriptIndex -lt $installScripts.Count; $scriptIndex++) {
     $currentScriptName = $installScripts[$scriptIndex]
 

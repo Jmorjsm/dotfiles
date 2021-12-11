@@ -8,8 +8,11 @@ Copy-ItemWithBackup ".gitignore" $gitConfigCoreExcludesFileName
 
 $gitConfigCoreExcludesFileName = $gitConfigCoreExcludesFileName.Replace("\", "\\")
 
-$gitConfigUserEmail = Read-Host -Prompt "git config user email"
-$gitConfigUserName = Read-Host -Prompt "git config user name"
+$gitConfigUserEmail = (git config --global --get user.email)
+$gitConfigUserName = (git config --global --get user.name)
+
+$gitConfigUserEmail = Read-HostWithDefault $gitConfigUserEmail "git config user email"
+$gitConfigUserName = Read-HostWithDefault $gitConfigUserName "git config user name"
 
 Write-Output "`tCopying .gitconfig to user home directory."
 
