@@ -2,6 +2,7 @@
 My tools, configs and other bits & bobs.
 
 ## Overview
+![Windows Terminal using these dotfiles](./assets/windows-terminal-screenshot.png)
 - Focused on configuring my Windows development environment, but will be adding support for other platforms.
 - Installs using a simple powershell script.
 - Makes a backup of each file that's copied. Will be possible to restore from a backup (eventually).
