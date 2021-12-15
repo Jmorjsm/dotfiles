@@ -29,7 +29,7 @@ function clobj($path)
 # posh-git
 Import-Module posh-git
 $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $true
-$GitPromptSettings.DefaultPromptPrefix.Text = '$(Get-Date -f "dd-MM HH:mm:ss")'
+$GitPromptSettings.DefaultPromptPrefix.Text = '$(Get-Date -f "dd-MM HH:mm:ss") '
 $GitPromptSettings.DefaultPromptPrefix.ForegroundColor = [ConsoleColor]::Cyan
 
 # fzf completion
