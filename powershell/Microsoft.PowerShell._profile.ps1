@@ -51,5 +51,8 @@ Import-Module DockerCompletion
 # gh cli completions
 Invoke-Expression (@(gh completion --shell powershell) -replace " ''\)$"," ' ')" -join "`n")
 
+# Environment variables
+$env:TZ_LIST = "US/Pacific,Pacific;US/Eastern,Eastern;Europe/Warsaw,Warsaw;Australia/Sydney,Sydney"
+
 Set-Location ~
 Clear-Host
