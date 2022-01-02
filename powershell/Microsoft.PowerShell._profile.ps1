@@ -26,6 +26,12 @@ function clobj($path)
     Get-childitem $path -include bin,obj -recurse | ForEach-Object ($_) { remove-item $_.fullname -force -recurse }
 }
 
+# Copy the current working directory path
+function cpwd()
+{
+    $(pwd).path | clip
+}
+
 # posh-git
 Import-Module posh-git
 $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $true
