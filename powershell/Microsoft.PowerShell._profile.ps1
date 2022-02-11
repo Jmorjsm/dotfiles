@@ -32,6 +32,31 @@ function cpwd()
     $(pwd).path | clip
 }
 
+# Helper function for removing and recreating the most-recently added EF migration.
+function RecreateMigration() {
+    # Get all migration names
+    $migrationNames = (dotnet ef migrations list)
+    
+    # Get the migration we should go back to (the one before the one we've added)
+    $migrationToRevertTo = $migrationNames[($migrationNames.length - 2)]
+    
+    # Get the migration name we want to recreate
+    $migrationToRecreate = $migrationNames[($migrationNames.length - 1)]
+    
+    # Trim first 15 characters (date and underscore) 20220124114814_AddMyTables
+    $migrationToRecreateTrimmedName = $migrationToRecreate.Substring(15)
+
+    # Migrate to the previous migration
+    dotnet ef database update $migrationToRevertTo
+
+    # Get rid of the migration we're recreating
+    dotnet ef migrations remove
+    
+    # Create the migration again
+    dotnet ef migrations add $migrationToRecreateTrimmedName
+}
+
+
 # posh-git
 Import-Module posh-git
 $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $true
